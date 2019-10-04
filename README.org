@@ -1,6 +1,6 @@
 #+STARTUP: showall indent
 
-[![Build Status](https://travis-ci.org/five-dots/ess-r-spreadsheet.svg?branch=master)](https://travis-ci.org/five-dots/ess-r-spreadsheet)
+[[https://travis-ci.org/five-dots/ess-r-spreadsheet][file:https://travis-ci.org/five-dots/ess-r-spreadsheet.svg?branch=master]]
 
 * ess-r-spreadsheet
 
