@@ -29,7 +29,7 @@
 
 ;;; Code:
 
-(require 'cl-lib)
+(require 'cl-macs)
 (require 'ess-inf)
 (require 'ess-custom)
 (require 'dash)
