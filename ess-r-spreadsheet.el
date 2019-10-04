@@ -125,7 +125,6 @@
     t))
 
 (defun ess-r-spreadsheet--view ()
-  (interactive)
   (if (f-exists? ess-r-spreadsheet--temp-file)
       (start-process "ess-r-spreadsheet"
                      nil
