@@ -1,0 +1,58 @@
+#+STARTUP: showall indent
+
+* ess-r-spreadsheet
+
+Simple extension for Emacs [[https://ess.r-project.org/][ESS]] to view R's data in a spreadsheet program. This small elisp is largely insipired by [[https://github.com/GioBo/ess-view][ess-view]], but rewrited for my purpose. Currently ~data.frame~ (inc. ~tibble~), ~matrix~ and ~vector~ are supported.
+
+* Usage
+
+- Open R source file.
+- Start iESS process.
+- ~M-x ess-r-spreadsheet~ on an object symbol.
+
+* Installation
+
+~ess-r-spreadsheet~ is not available through MELPA at this time. First you have to clone the repo.
+
+#+begin_src shell
+git clone https://github.com/five-dots/ess-r-spreadsheet.git
+#+end_src
+
+Then, add to your load-path and require:
+
+#+begin_src emacs-lisp
+;; (add-to-list 'load-path "~/Dropbox/repos/public/ess-r-spreadsheet")
+(add-to-list 'load-path "/path/to/repo")
+(require 'ess-r-spreadsheet)
+#+end_src
+
+If you like ~use-package~:
+
+#+begin_src emacs-lisp
+(use-package ess-r-spreadsheet
+  ;; :load-path "~/Dropbox/repos/public/ess-r-spreadsheet"
+  :load-path "/path/to/repo"
+  :commands ess-r-spreadsheet)
+#+end_src
+
+* Configuration
+
+- Default configuration
+
+#+begin_src emacs-lisp
+(setq ess-r-spreadsheet-programs
+      '("libreoffice" "gnumeric" "openoffice" "soffice"))
+(setq ess-r-spreadsheet-temp-dir "/tmp/ess-r-spreadsheet/")
+#+end_src
+
+* TODOs
+
+- [ ] Unit testing
+- [ ] Windows support
+- [ ] Prompt for selecting objects inside list
+
+* License
+
+See [COPYING][]. Copyright (c) 2016 boccigionata.
+
+[COPYING]: ./COPYING
