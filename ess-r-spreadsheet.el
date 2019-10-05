@@ -47,8 +47,8 @@
 (defvar ess-r-spreadsheet-temp-dir "/tmp/ess-r-spreadsheet/"
   "Temporary file directory.")
 
-(defvar ess-r-spreadsheet--temp-file nil
-  "Temporary file.")
+;; (defvar ess-r-spreadsheet--temp-file nil
+;;   "Temporary file.")
 
 
 (defun ess-r-spreadsheet--get-proc ()
