@@ -15,7 +15,8 @@ build:
 	" (batch-byte-compile)" ess-r-spreadsheet.el
 
 test:
-	${CASK} exec ${EMACS} -Q -batch -L . -l test/ess-r-spreadsheet-tests.el -f ert-run-tests-batch-and-exit
+	${CASK} exec ${EMACS} -Q -batch -L . -l \
+	test/ess-r-spreadsheet-tests.el -f ert-run-tests-batch-and-exit
 
 clean:
 	rm -f ess-r-spreadsheet.elc
