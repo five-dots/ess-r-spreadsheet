@@ -25,4 +25,4 @@ install:
 script:
   - ls *
   - cask --version
-  - make test
+  - cask exec ert-runner test/ess-r-spreadsheet-tests.el
