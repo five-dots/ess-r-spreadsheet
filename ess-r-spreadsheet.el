@@ -7,7 +7,7 @@
 ;; URL: https://github.com/five-dots/ess-r-spreadsheet
 ;; Created: 2019-10-04
 ;; Version: 0.1
-;; Package-Requires: ((cl-lib) (ess "15") (dash "1.8.0") (f "0.16.0"))
+;; Package-Requires: ((ess "15") (dash "1.8.0") (f "0.16.0"))
 ;; Keywords: extensions, ess
 
 ;; This file is not part of GNU Emacs.
@@ -64,7 +64,7 @@
 (defun ess-r-spreadsheet--get-temp-file (obj-name)
   (let ((dir ess-r-spreadsheet-temp-dir)
         (temp-name))
-    ;; (f-mkdir dir)
+    (f-mkdir dir)
     (setq temp-name (make-temp-name (concat obj-name "_")))
     ;; Return temp file path with ramdom suffix
     ;; e.g. /tmp/ess-r-spreadsheet/iris_URRqCX.csv
