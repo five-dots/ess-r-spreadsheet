@@ -27,7 +27,7 @@
 
 (require 'ert)
 (require 's)
-(require 'ess-r-spreadsheet)
+;; (require 'ess-r-spreadsheet)
 
 ;; (ert-deftest ess-r-spreadsheet--get-temp-file-test ()
 ;;   ;; (let ((file (ess-r-spreadsheet--get-temp-file "iris")))
