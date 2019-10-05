@@ -27,4 +27,6 @@ install:
 script:
   - ls *
   - cask --version
+  - cask exec emacs -Q -batch -L ess-r-spreadsheet.el
+  - cask exec emacs -Q -batch -L ess-r-spreadsheet.el -l test/ess-r-spreadsheet-tests.el
   - cask exec emacs -Q -batch -L . -l test/ess-r-spreadsheet-tests.el -f ert-run-tests-batch-and-exit
