@@ -65,7 +65,8 @@
   (let ((dir ess-r-spreadsheet-temp-dir)
         (temp-name))
     (f-mkdir dir)
-    (setq temp-name (make-temp-name (concat obj-name "_")))
+    ;; (setq temp-name (make-temp-name (concat obj-name "_")))
+    (setq temp-name (concat obj-name "_"))
     ;; Return temp file path with ramdom suffix
     ;; e.g. /tmp/ess-r-spreadsheet/iris_URRqCX.csv
     (concat dir temp-name ".csv")))
