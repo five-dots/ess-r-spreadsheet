@@ -98,7 +98,7 @@
       (return-from ess-r-spreadsheet--save)))
 
     ;; Build R command
-    ;; TODO Test all functions can save all data types.
+    ;; TODO command option
     (setq obj (ess-r-spreadsheet--get-obj-name))
     (setq ess-r-spreadsheet--temp-file (ess-r-spreadsheet--get-temp-file obj))
     (cond
