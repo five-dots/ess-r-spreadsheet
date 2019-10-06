@@ -12,7 +12,7 @@ Simple extension for Emacs [[https://ess.r-project.org/][ESS]] to view R's data 
 - Start iESS process.
 - ~M-x ess-r-spreadsheet~ on an object symbol.
 
-https://user-images.githubusercontent.com/51394432/66276927-74b05480-e8d2-11e9-9cbd-a03d4ba76edd.gif
+[[file:https://user-images.githubusercontent.com/51394432/66276927-74b05480-e8d2-11e9-9cbd-a03d4ba76edd.gif][demo]]
 
 ** Installation
 
