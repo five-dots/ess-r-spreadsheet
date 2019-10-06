@@ -29,7 +29,6 @@
 
 ;;; Code:
 
-;; (eval-when-compile (require 'cl-lib))
 (require 'cl-lib)
 (require 'ess-inf)
 (require 'ess-custom)
@@ -40,10 +39,6 @@
 (defvar ess-r-spreadsheet-programs
   '("libreoffice" "gnumeric" "openoffice" "soffice")
   "List of spreadsheet programs in order of priority.")
-
-;; (defvar ess-r-spreadsheet--executable
-;;   (-first 'f-executable? (-map 'executable-find ess-r-spreadsheet-programs))
-;;   "Spreadsheet program to be used to view object.")
 
 (defvar ess-r-spreadsheet-temp-dir "/tmp/ess-r-spreadsheet/"
   "Temporary file directory.")
@@ -75,7 +70,8 @@
   (->> ess-r-spreadsheet-programs
        (-map 'executable-find)
        (-non-nil)
-       (car)))
+       (car) ; return nil if no executable found
+       ))
 
 (cl-defun ess-r-spreadsheet--save ()
   (let ((proc (ess-r-spreadsheet--get-proc))
