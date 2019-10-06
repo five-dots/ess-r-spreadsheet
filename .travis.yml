@@ -1,7 +1,7 @@
 language: emacs-lisp
 sudo: required
 dist: trusty
-# Disable caching https://github.com/flycheck/emacs-travis/issues/22
+# FIXME Disable caching https://github.com/flycheck/emacs-travis/issues/22
 # cache:
 #   - directories:
 #       - "$HOME/emacs/"
