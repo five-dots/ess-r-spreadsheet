@@ -37,19 +37,19 @@
 (require 'f)
 
 
-(defvar ess-r-spreadsheet-programs
-  '("libreoffice" "gnumeric" "openoffice" "soffice")
-  "List of spreadsheet programs in order of priority.")
+;; (defvar ess-r-spreadsheet-programs
+;;   '("libreoffice" "gnumeric" "openoffice" "soffice")
+;;   "List of spreadsheet programs in order of priority.")
 
-(defvar ess-r-spreadsheet--executable
-  (-first 'f-executable? (-map 'executable-find ess-r-spreadsheet-programs))
-  "Spreadsheet program to be used to view object.")
+;; (defvar ess-r-spreadsheet--executable
+;;   (-first 'f-executable? (-map 'executable-find ess-r-spreadsheet-programs))
+;;   "Spreadsheet program to be used to view object.")
 
-(defvar ess-r-spreadsheet-temp-dir "/tmp/ess-r-spreadsheet/"
-  "Temporary file directory.")
+;; (defvar ess-r-spreadsheet-temp-dir "/tmp/ess-r-spreadsheet/"
+;;   "Temporary file directory.")
 
-(defvar ess-r-spreadsheet--temp-file nil
-  "Temporary file.")
+;; (defvar ess-r-spreadsheet--temp-file nil
+;;   "Temporary file.")
 
 
 ;; (defun ess-r-spreadsheet--get-proc ()
