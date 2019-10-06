@@ -10,4 +10,6 @@
  (depends-on "ess")
  (depends-on "f")
  (depends-on "s")
- (depends-on "ert-runner"))
+ (depends-on "ert-runner")
+ (depends-opn "cl-lib")
+ )

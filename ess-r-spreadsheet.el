@@ -29,7 +29,8 @@
 
 ;;; Code:
 
-(eval-when-compile (require 'cl-lib))
+;; (eval-when-compile (require 'cl-lib))
+(require 'cl-lib)
 (require 'ess-inf)
 (require 'ess-custom)
 (require 'dash)
@@ -47,8 +48,8 @@
 (defvar ess-r-spreadsheet-temp-dir "/tmp/ess-r-spreadsheet/"
   "Temporary file directory.")
 
-;; (defvar ess-r-spreadsheet--temp-file nil
-;;   "Temporary file.")
+(defvar ess-r-spreadsheet--temp-file nil
+  "Temporary file.")
 
 
 (defun ess-r-spreadsheet--get-proc ()
@@ -71,59 +72,59 @@
     ;; e.g. /tmp/ess-r-spreadsheet/iris_URRqCX.csv
     (concat dir temp-name ".csv")))
 
-(cl-defun ess-r-spreadsheet--save ()
-  (let ((proc (ess-r-spreadsheet--get-proc))
-        (obj)
-        (func)
-        (cmd)
-        (msg))
+;; (cl-defun ess-r-spreadsheet--save ()
+;;   (let ((proc (ess-r-spreadsheet--get-proc))
+;;         (obj)
+;;         (func)
+;;         (cmd)
+;;         (msg))
 
-    ;; Check if the iESS process is running
-    (unless (processp proc)
-      (message "Process not started.")
-      (return-from ess-r-spreadsheet--save))
+;;     ;; Check if the iESS process is running
+;;     (unless (processp proc)
+;;       (message "Process not started.")
+;;       (return-from ess-r-spreadsheet--save))
 
-    ;; Check library avilability
-    (cond
-     ((ess-boolean-command "'data.table' %in% installed.packages()\n")
-      (setq func "data.table::fwrite"))
-     ((ess-boolean-command "'readr' %in% installed.packages()\n")
-      (setq func "readr::write_csv"))
-     ((ess-boolean-command "'utils' %in% installed.packages()\n")
-      (setq func "utils::write.csv"))
-     (t
-      (message "No save funcstions found.")
-      (return-from ess-r-spreadsheet--save)))
+;;     ;; Check library avilability
+;;     (cond
+;;      ((ess-boolean-command "'data.table' %in% installed.packages()\n")
+;;       (setq func "data.table::fwrite"))
+;;      ((ess-boolean-command "'readr' %in% installed.packages()\n")
+;;       (setq func "readr::write_csv"))
+;;      ((ess-boolean-command "'utils' %in% installed.packages()\n")
+;;       (setq func "utils::write.csv"))
+;;      (t
+;;       (message "No save funcstions found.")
+;;       (return-from ess-r-spreadsheet--save)))
 
-    ;; Build R command
-    ;; TODO Test all functions can save all data types.
-    (setq obj (ess-r-spreadsheet--get-obj-name))
-    (setq ess-r-spreadsheet--temp-file (ess-r-spreadsheet--get-temp-file obj))
-    (cond
-     ((ess-boolean-command (format "is.data.frame(%s)\n" obj))
-      (setq cmd (format "%s(%s, '%s')" func obj ess-r-spreadsheet--temp-file)))
-     ((ess-boolean-command (format "is.matrix(%s) || is.atomic(%s)\n" obj obj))
-      (setq cmd (format "%s(as.data.frame(%s), '%s')"
-                        func obj ess-r-spreadsheet--temp-file)))
-     ((ess-boolean-command (format "is.list(%s)\n" obj))
-      (message "Use $ to select object inside the list.")
-      (return-from ess-r-spreadsheet--save))
-     (t
-      (message "This data type is not supported.")
-      (return-from ess-r-spreadsheet--save)))
+;;     ;; Build R command
+;;     ;; TODO Test all functions can save all data types.
+;;     (setq obj (ess-r-spreadsheet--get-obj-name))
+;;     (setq ess-r-spreadsheet--temp-file (ess-r-spreadsheet--get-temp-file obj))
+;;     (cond
+;;      ((ess-boolean-command (format "is.data.frame(%s)\n" obj))
+;;       (setq cmd (format "%s(%s, '%s')" func obj ess-r-spreadsheet--temp-file)))
+;;      ((ess-boolean-command (format "is.matrix(%s) || is.atomic(%s)\n" obj obj))
+;;       (setq cmd (format "%s(as.data.frame(%s), '%s')"
+;;                         func obj ess-r-spreadsheet--temp-file)))
+;;      ((ess-boolean-command (format "is.list(%s)\n" obj))
+;;       (message "Use $ to select object inside the list.")
+;;       (return-from ess-r-spreadsheet--save))
+;;      (t
+;;       (message "This data type is not supported.")
+;;       (return-from ess-r-spreadsheet--save)))
 
-    ;; Output message
-    (setq msg (format "Saving as %s..." ess-r-spreadsheet--temp-file))
-    (ess-send-string proc cmd nil msg)
+;;     ;; Output message
+;;     (setq msg (format "Saving as %s..." ess-r-spreadsheet--temp-file))
+;;     (ess-send-string proc cmd nil msg)
 
-    ;; Wait for the file readable
-    ;; TODO wait timer for large obj
-    (while (not (f-readable? ess-r-spreadsheet--temp-file))
-      (sit-for 1))
+;;     ;; Wait for the file readable
+;;     ;; TODO wait timer for large obj
+;;     (while (not (f-readable? ess-r-spreadsheet--temp-file))
+;;       (sit-for 1))
 
-    ;; Return t if sucess. Failed case return nil by (return-from)
-    (message "Done.")
-    t))
+;;     ;; Return t if sucess. Failed case return nil by (return-from)
+;;     (message "Done.")
+;;     t))
 
 (defun ess-r-spreadsheet--view ()
   (if (f-exists? ess-r-spreadsheet--temp-file)
