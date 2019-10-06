@@ -71,6 +71,12 @@
     ;; e.g. /tmp/ess-r-spreadsheet/iris_URRqCX.csv
     (concat dir temp-name ".csv")))
 
+(defun ess-r-spreadsheet--get-executable ()
+  (->> ess-r-spreadsheet-programs
+       (-map 'executable-find)
+       (-non-nil)
+       (car)))
+
 (cl-defun ess-r-spreadsheet--save ()
   (let ((proc (ess-r-spreadsheet--get-proc))
         (obj)
@@ -125,13 +131,21 @@
     (message "Done.")
     t))
 
-(defun ess-r-spreadsheet--view ()
-  (if (f-exists? ess-r-spreadsheet--temp-file)
-      (start-process "ess-r-spreadsheet"
-                     nil
-                     ess-r-spreadsheet--executable
-                     ess-r-spreadsheet--temp-file)
-    (message "Could not find %s." ess-r-spreadsheet--temp-file)))
+(cl-defun ess-r-spreadsheet--view ()
+  (let ((exec (ess-r-spreadsheet--get-executable))
+        (file ess-r-spreadsheet--temp-file))
+
+    ;; Check if executable exists
+    (unless exec
+      (message "No spreadsheet executables found.")
+      (return-from ess-r-spreadsheet--view))
+
+    ;; Check if saved file exists
+    (unless file
+      (message "Could not find saved file.")
+      (return-from ess-r-spreadsheet--view))
+
+    (start-process "ess-r-spreadsheet" nil exec file)))
 
 ;;;###autoload
 (defun ess-r-spreadsheet ()
