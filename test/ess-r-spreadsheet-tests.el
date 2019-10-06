@@ -29,15 +29,11 @@
 (require 's)
 (require 'ess-r-spreadsheet)
 
-;; (ert-deftest ess-r-spreadsheet--get-temp-file-test ()
-;;   ;; (let ((file (ess-r-spreadsheet--get-temp-file "iris")))
-;;   ;;   (should (s-starts-with? "/tmp/ess-r-spreadsheet/iris_" file))
-;;   ;;   (should (s-ends-with? ".csv" file)))
-;;   (should
-;;    (let ((file (ess-r-spreadsheet--get-temp-file "iris")))
-;;      (and (s-starts-with? "/tmp/ess-r-spreadsheet/iris_" file)
-;;           (s-ends-with? ".csv" file))))
-;;   )
+(ert-deftest ess-r-spreadsheet--get-temp-file-test ()
+  (should
+   (let ((file (ess-r-spreadsheet--get-temp-file "iris")))
+     (and (s-starts-with? "/tmp/ess-r-spreadsheet/iris_" file)
+          (s-ends-with? ".csv" file)))))
 
 (provide 'ess-r-spreadsheet-tests)
 
