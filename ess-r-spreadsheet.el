@@ -52,25 +52,25 @@
   "Temporary file.")
 
 
-(defun ess-r-spreadsheet--get-proc ()
-  (if (stringp ess-local-process-name)
-      (get-process ess-local-process-name)
-    nil))
+;; (defun ess-r-spreadsheet--get-proc ()
+;;   (if (stringp ess-local-process-name)
+;;       (get-process ess-local-process-name)
+;;     nil))
 
-(defun ess-r-spreadsheet--get-obj-name ()
-  (let ((obj))
-    (setq obj (ess-read-object-name "R object:"))
-    (substring-no-properties (car obj))))
+;; (defun ess-r-spreadsheet--get-obj-name ()
+;;   (let ((obj))
+;;     (setq obj (ess-read-object-name "R object:"))
+;;     (substring-no-properties (car obj))))
 
-(defun ess-r-spreadsheet--get-temp-file (obj-name)
-  (let ((dir ess-r-spreadsheet-temp-dir)
-        (temp-name))
-    (f-mkdir dir)
-    ;; (setq temp-name (make-temp-name (concat obj-name "_")))
-    (setq temp-name (concat obj-name "_"))
-    ;; Return temp file path with ramdom suffix
-    ;; e.g. /tmp/ess-r-spreadsheet/iris_URRqCX.csv
-    (concat dir temp-name ".csv")))
+;; (defun ess-r-spreadsheet--get-temp-file (obj-name)
+;;   (let ((dir ess-r-spreadsheet-temp-dir)
+;;         (temp-name))
+;;     (f-mkdir dir)
+;;     ;; (setq temp-name (make-temp-name (concat obj-name "_")))
+;;     (setq temp-name (concat obj-name "_"))
+;;     ;; Return temp file path with ramdom suffix
+;;     ;; e.g. /tmp/ess-r-spreadsheet/iris_URRqCX.csv
+;;     (concat dir temp-name ".csv")))
 
 ;; (cl-defun ess-r-spreadsheet--save ()
 ;;   (let ((proc (ess-r-spreadsheet--get-proc))
@@ -126,20 +126,20 @@
 ;;     (message "Done.")
 ;;     t))
 
-(defun ess-r-spreadsheet--view ()
-  (if (f-exists? ess-r-spreadsheet--temp-file)
-      (start-process "ess-r-spreadsheet"
-                     nil
-                     ess-r-spreadsheet--executable
-                     ess-r-spreadsheet--temp-file)
-    (message "Could not find %s." ess-r-spreadsheet--temp-file)))
+;; (defun ess-r-spreadsheet--view ()
+;;   (if (f-exists? ess-r-spreadsheet--temp-file)
+;;       (start-process "ess-r-spreadsheet"
+;;                      nil
+;;                      ess-r-spreadsheet--executable
+;;                      ess-r-spreadsheet--temp-file)
+;;     (message "Could not find %s." ess-r-spreadsheet--temp-file)))
 
 ;;;###autoload
-(defun ess-r-spreadsheet ()
-  "View R's object in your spreadsheet program."
-  (interactive)
-  (when (ess-r-spreadsheet--save)
-    (ess-r-spreadsheet--view)))
+;; (defun ess-r-spreadsheet ()
+;;   "View R's object in your spreadsheet program."
+;;   (interactive)
+;;   (when (ess-r-spreadsheet--save)
+;;     (ess-r-spreadsheet--view)))
 
 (provide 'ess-r-spreadsheet)
 
