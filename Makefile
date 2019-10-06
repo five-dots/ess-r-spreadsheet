@@ -12,7 +12,7 @@ all:
 
 build:
 	${CASK} exec ${EMACS} -batch -Q -L . -eval \
-	" (batch-byte-compile)" ess-r-spreadsheet.el
+	"(batch-byte-compile)" ess-r-spreadsheet.el
 
 test:
 	${CASK} exec ${EMACS} -Q -batch -L . -l \
