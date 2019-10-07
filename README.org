@@ -50,7 +50,9 @@ Or if you like ~use-package~:
 
 ** TODOs
 
-- [ ] Unit testing
+- [x] Unit testing and CI facility
+- [ ] Write command options
+- [ ] Expand test coverage
 - [ ] Windows support
-- [ ] Prompt for selecting objects inside list
+- [ ] Prompt for selecting data inside a list object
 
